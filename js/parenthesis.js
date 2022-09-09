@@ -15,7 +15,7 @@ const isPaired = (input) => {
 
             else {
                 const sarr = ["}", ")", "]"]
-
+ 
                 if (sarr.indexOf(input[i]) !== -1)
                     return false
             }
