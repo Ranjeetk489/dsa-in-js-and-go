@@ -22,7 +22,7 @@ const isPaired = (input) => {
         }
     }
     if (stack.length == 0) return true
-    return "fool";
+    return false;
 
 }
 

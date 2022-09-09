@@ -36,7 +36,7 @@ class LinkedList {
     delete(value) {
         while(this.head && this.head.value === value){
             this.head= this.head.next;
-            return;
+            
         }
         let currNode = this.head;
         while(currNode.next) {
