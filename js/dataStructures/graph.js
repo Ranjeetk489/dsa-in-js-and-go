@@ -54,3 +54,4 @@ const graph = new Graph()
 graph.addVertex("A")
 graph.addVertex("B")
 graph.addEdge("A", "B");
+graph.addEdge("C", "D")
