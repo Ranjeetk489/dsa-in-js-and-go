@@ -41,6 +41,7 @@ class DoubleLinkedList{
         while(currNode.next) {
             if(currNode.next.value == value) {
                 currNode.next = currNode.next.next;
+                currNode.next.next = currNode.next.prev;
             }
             else {
                 currNode = currNode.next

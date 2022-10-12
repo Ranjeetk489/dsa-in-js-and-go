@@ -9,10 +9,8 @@ class LinkedList {
         const newNode = {value:value, next:null};
         if(this.tail) {
             this.tail.next=newNode;
-           
         }
         this.tail= newNode;
-       
         if(!this.head) {
             this.head = newNode
         }
@@ -58,6 +56,5 @@ const list = new LinkedList();
 list.append(1);
 list.append(2);
 list.append(3);
-list.delete(2);
 list.toArray();
 
