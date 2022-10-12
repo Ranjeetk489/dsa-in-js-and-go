@@ -56,10 +56,24 @@ import (
 // "Hello from Snippetbox" as the response body.
 
 func home(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/" {
+		http.NotFound(w, r)
+		return
+	}
 	w.Write([]byte("Hello from Snippetbox"))
+
 }
 
 func specificPage(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		w.Header().Set("Allow", http.MethodPost)
+		w.Header()["X-xSS-Protection"] = []string{"1; mode=block"}
+		w.Header().Add("xss-prot", "well")
+		// w.WriteHeader(405)
+		// w.Write([]byte("Method Not allowed"))
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
 	w.Write([]byte("You have visited a specific page"))
 }
 
@@ -72,10 +86,10 @@ func main() {
 	// register the home function as the handler for the "/" URL pattern.
 	fmt.Println('o')
 	mux := http.NewServeMux()
-	mux.HandleFunc("/hom", home)
+	mux.HandleFunc("/", home)
 	// Use the http.ListenAndServe() function to start a new web server. We pass in
 	mux.HandleFunc("/specific", specificPage)
-	mux.HandleFunc("/create", createStuff)
+	mux.HandleFunc("/github.com", createStuff)
 	log.Print("Starting server on :4000")
 	err := http.ListenAndServe(":4000", mux)
 	log.Fatal(err)
