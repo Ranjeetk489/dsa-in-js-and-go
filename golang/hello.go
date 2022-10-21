@@ -50,6 +50,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 // Define a home handler function which writes a byte slice containing
@@ -78,7 +79,13 @@ func specificPage(w http.ResponseWriter, r *http.Request) {
 }
 
 func createStuff(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Create stuff on this page"))
+	id, err := strconv.Atoi(r.URL.Query().Get("id"))
+
+	if err != nil || id < 1 {
+		http.NotFound(w, r)
+		return
+	}
+	fmt.Fprintf(w, "got the id with %d..", id)
 }
 
 func main() {
