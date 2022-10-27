@@ -38,12 +38,12 @@
 //     }
 //     return [score, j]
 // }
+
 const calculateAverage = s => {
     if (s === '') return 'No matches this season';
-    var A = Array.from(s.matchAll(/(?<=A)\d+/g)).map(x => console.log(typeof x[0]))
+    var A = Array.from(s.matchAll(/(?<=A)\d+/g)).map(x => +x[0]).reduce((a,b) => a+b, 0);
     console.log(A)
     var B = Array.from(s.matchAll(/(?<=B)\d+/g)).map(x => +x[0]).reduce((a,b) => a+b, 0);
-    
     A = Math.round(A / s.split('').filter(c => c === 'A').length);
     B = Math.round(B / s.split('').filter(c => c === 'B').length);
     if (A === B) return 'Well played, average scores are equal';
